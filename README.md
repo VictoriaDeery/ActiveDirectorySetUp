@@ -3,7 +3,7 @@
  ### [YouTube Demonstration](https://youtu.be/7eJexJVCqJo)
 
 <h2>Description</h2>
-This lab consists of a a walkthrough in creating an Active Directory using Azure. Configuring and running this lab, devlops understanding of how ctive directory and windows networking works.
+This lab consists of a walkthrough for creating an Active Directory using Azure. Configuring and running this lab develops an understanding of how Active Directory and Windows networking work.
 <br />
 
 
