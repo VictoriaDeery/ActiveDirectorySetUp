@@ -3,7 +3,7 @@
  ### [YouTube Demonstration-available upon request]
  
 <h2>Description</h2>
-This lab consists of a walkthrough for creating an Active Directory using Azure. Configuring and running this lab develops an understanding of how Active Directory and Windows networking work. Active Directory is software built and maintained by Microsoft that allows for central management of thousands of user accounts, devices, and respective permissions and access to resources. A familiar use case example is an active directory "Domain" at a university that all the computers are joined to, which  allows you to log into any computer on campus with your same user and password on the domain. So if a computer is joined to the domain, it is possible to log into that computer by using a user account that is stored in Active Directory.
+This lab consists of a walkthrough for creating an Active Directory using VMs created in Azure. Configuring and running this lab develops an understanding of how Active Directory and Windows networking work. Active Directory is software built and maintained by Microsoft that allows for central management of thousands of user accounts, devices, and respective permissions and access to resources. A familiar use case example is an active directory "Domain" at a university that all the computers are joined to, which  allows you to log into any computer on campus with your same user and password on the domain. So if a computer is joined to the domain, it is possible to log into that computer by using a user account that is stored in Active Directory.
 <br />
 
 
