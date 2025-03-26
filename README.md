@@ -27,8 +27,9 @@ This lab consists of a walkthrough for creating an Active Directory using Azure.
 - Join Client to domain, allowing all users that exist in the domain to log into client-1
  - E.Join the Windows 10 computer to the Domain (Providing the windows 10 computer with access to all user accounts on the Domain)
  - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
- - G. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
- - H. Use Powershell to automatically create users/clients in bulk
+ - G. Use Powershell to automatically create users/clients in bulk
+ - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
+
 - Coming Up!: In the next repository, we will reset users passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
 
 <h2>Program walk-through:</h2>
@@ -94,11 +95,28 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
 <p>
  
 </p>
-  1. Make sure you have completed the earlier step of setting client-1's DNS settings to dc-1's Private IP address from the azure portal and restarting client-1 and if you've followed along, this is already done. log into client-1 using the original local admin (labuser)and join it to the domain by right-clicking the start menu ->system -> a window will pop up, to the right select "rename this PC advanced." Under the computer name tab, click "change" and under "member of" select "domain" and type your domain. Notice, because we set the DNS settings on client-1 to use dc-1's private IP address, it is able to locate the domain controller (DC) for the mydomain.com domain prompting a username and password instead of receiving the error "And AD DC for this domain could not be contacted." Again, because mydomain.com is a DNS and its settings have been configured properly, it is able to locate the appropriate domain controller. Now log in, specifying the context via using mydomain.com\jane_admin as the username because she is a domain admin so she should have permissions to join the domain.
-  
+  1. Make sure you have completed the earlier step of setting client-1's DNS settings to dc-1's Private IP address from the azure portal and restarting client-1 and if you've followed along, this is already done. log into client-1 using the original local admin (labuser)and join it to the domain by right-clicking the start menu ->system -> a window will pop up, to the right select "rename this PC advanced." Under the computer name tab, click "change" and under "member of" select "domain" and type your domain. Notice, because we set the DNS settings on client-1 to use dc-1's private IP address, it is able to locate the domain controller (DC) for the mydomain.com domain prompting a username and password instead of receiving the error "And AD DC for this domain could not be contacted." Again, because mydomain.com is a DNS and its settings have been configured properly, it is able to locate the appropriate domain controller. Now log in, specifying the context via using mydomain.com\jane_admin as the username because she is a domain admin so she should have permissions to join the domain. begin closing windows and restart. When it restarts it has become a member of the domain! But let's make sure. Go to the domain and verify that client-1 is in there.
+  <p>
+   ![image](https://github.com/user-attachments/assets/16a07c12-741c-4886-bd7a-cb3145bb72fb)
+![image](https://github.com/user-attachments/assets/81595327-884d-4bdc-8f95-2f22d54c5092)
+
+  </p>
+  2. Log into dc-1 as jane_admin.in the start search, search "active directory users and computers." expand "mydomain.comand select "computer" and you should see "client-1" double click it and you can view information about it like its a member of what group, and running what system. Make another operational unit called "_CLIENTS."Go back to computers, and then drag client-1 into _CLIENTS, saying yes to the pop up warning. Right click mydomain.com to refresh.
+  <p>
  - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
- - G. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
- - H. Use Powershell to automatically create users/clients in bulk
+   <p>
+    
+    <p>
+    ![image](https://github.com/user-attachments/assets/5d95f5b6-d8d7-4e0e-9d50-ab7994534564)
+<p>
+ 
+</p>
+    log into client-1 as jane_admin using mydomain.com\jane_admin as the username. Then rightclick the start menu -> system -> a window wil pop up, select "remote desktop" on the left. Allow domain users to accessremote desktop, by selecting "select users that can remotely access this PC" under "user accounts" then select "add". The computer is able to access the context of mydomain.com (for example, you can check again for "domain admins" now on this computer and when you check, it will find it because you are connected to the domain. however domain admins already have access to log in. so instead type "domain users" indicating all users in the domain will be allowed to log in to this computer. select "ok" and "add." Normally this step would be done with Group Policy, allowing you to change many systems at once. For more on Group policy objects (GPO) look to my future repository on active directory, a continuation of this lab.
+    
+  - G. Use Powershell to automatically create users/clients in bulk
+   log into dc-1 as domain admin and open PowerShell Ise as admin by right clicking it.
+ - H. Confirm by logging into the Windows 10 computer using a normal domain user, which we will create)
+
 - Coming Up!: In the next repository, we will reset users passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
 $Launch the utility: <br/>
  <br />
