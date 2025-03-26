@@ -10,7 +10,10 @@ This lab consists of a walkthrough for creating an Active Directory using Azure.
 <h2>Languages and Utilities Used</h2>
 
 - <b>PowerShell</b> 
-- <b>Diskpart</b>
+- <b>Azure</b>
+- <b>Active Directory</b>
+- <b>remote desktop</b>
+- <b>Active Directory Users and Computers</b> 
 
 <h2>Environments Used </h2>
 
@@ -41,7 +44,7 @@ This lab consists of a walkthrough for creating an Active Directory using Azure.
 Overview: The default DNS settings on the client, its NIC, will point to a DNS server managed by Microsoft. So, for the client to join the domain, we will tell the client to use our domain controller as the DNS server. To do this, we will set the Client's DNS IP address in its virtual NIC to the IP address of the domain controller. (Often, the domain controller doubles as a DNS server, as it will in this lab.) 
  <p>
  <br />
-  - A & B Make a Resource Group and virtual network
+- A & B Make a Resource Group and virtual network
 <p>
  Create a new virtual network and resource group. I am calling the resource group "Active-Directory-Lab" and putting it in Canada. For step by step directions to make a Resource group, network, VM, and remote desktop, review my repository [network and computing]. I'll manually create the virtual network instead of letting the VM make it. I'll name this virtual network "Active-Directory-Vnet."
  <p>
