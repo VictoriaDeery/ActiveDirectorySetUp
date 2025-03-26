@@ -18,17 +18,17 @@ This lab consists of a walkthrough for creating an Active Directory using Azure.
 
 <h2>Outline:</h2>
 
--Set up:
- - A. Make a Resource Group in the Subscription inside the Tenant Organization, Azure
- - B. Create a Virtual Network and Subnet
- - C. Create 2 VMs (Windows Server [Domain Controller] & Windows 10 [Client])
+- Set up:
+  - A. Make a Resource Group in the Subscription inside the Tenant Organization, Azure
+  - B. Create a Virtual Network and Subnet
+  - C. Create 2 VMs (Windows Server [Domain Controller] & Windows 10 [Client])
 -  Install active directory on the domain controller & Create domain admin user
- -   D. Create a Domain on the Windows Server Server (Domain Controller)
+  -   D. Create a Domain on the Windows Server Server (Domain Controller)
 - Join Client to domain, allowing all users that exist in the domain to log into client-1
- - E.Join the Windows 10 computer to the Domain (Providing the windows 10 computer with access to all user accounts on the Domain)
- - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
- - G. Use Powershell to automatically create users/clients in bulk
- - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
+  - E.Join the Windows 10 computer to the Domain (Providing the windows 10 computer with access to all user accounts on the Domain)
+  - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
+  - G. Use Powershell to automatically create users/clients in bulk
+  - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
 
 - Coming Up!: In the next repository, we will reset users passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
 
@@ -114,7 +114,13 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
     log into client-1 as jane_admin using mydomain.com\jane_admin as the username. Then rightclick the start menu -> system -> a window wil pop up, select "remote desktop" on the left. Allow domain users to accessremote desktop, by selecting "select users that can remotely access this PC" under "user accounts" then select "add". The computer is able to access the context of mydomain.com (for example, you can check again for "domain admins" now on this computer and when you check, it will find it because you are connected to the domain. however domain admins already have access to log in. so instead type "domain users" indicating all users in the domain will be allowed to log in to this computer. select "ok" and "add." Normally this step would be done with Group Policy, allowing you to change many systems at once. For more on Group policy objects (GPO) look to my future repository on active directory, a continuation of this lab.
     
   - G. Use Powershell to automatically create users/clients in bulk
-   log into dc-1 as domain admin and open PowerShell Ise as admin by right clicking it.
+  - <p>
+   
+   <p>
+    ![image](https://github.com/user-attachments/assets/080e5f8f-d88e-4e82-b127-888a0264f875)
+
+  </p>
+   log into dc-1 as domain admin and open PowerShell Ise as admin by right clicking it. copy the code from the file at the top of this repository titled "Generate-Names-Create-Users" then back in Powershell create a new file by clicking the first icon below "file", paste it in there and then type ctrl+s to save it to the desktop calling it "create-users"
  - H. Confirm by logging into the Windows 10 computer using a normal domain user, which we will create)
 
 - Coming Up!: In the next repository, we will reset users passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
