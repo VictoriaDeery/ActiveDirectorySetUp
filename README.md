@@ -31,9 +31,12 @@ This lab consists of a walkthrough for creating an Active Directory using VMs cr
   - E.Join the Windows 10 computer to the Domain (Providing the Windows 10 computer with access to all user accounts on the Domain)
   - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
   - G. Use Powershell to automatically create users/clients in bulk
-  - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create)
+  - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create
 
-- Coming Up!: In the next repository, we will reset users' passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
+- Ready to dive deeper? This repo lays the groundwork for exploring more Active Directory concepts like resetting users' passwords, creating network shares, and assigning permissions based on users and groups. Check out these repos for a closer look:
+  - [Active Directory Functionality](https://github.com/VictoriaDeery/ActiveDirectoryLab-pt2/blob/main/README.md)
+  - [DNS](https://github.com/victoriadeery/DNS)
+  - [Network File Shares and Permissions](https://github.com/victoriadeery/Network-File-Shares-and-Permissions)
 
 <h2>Program walk-through:</h2>
 
@@ -44,10 +47,12 @@ This lab consists of a walkthrough for creating an Active Directory using VMs cr
 Overview: The default DNS settings on the client, its NIC, will point to a DNS server managed by Microsoft. So, for the client to join the domain, we will tell the client to use our domain controller as the DNS server. To do this, we will set the Client's DNS IP address in its virtual NIC to the IP address of the domain controller. (Often, the domain controller doubles as a DNS server, as it will in this lab.) 
  <p>
  <br />
-- A & B Make a Resource Group and virtual network
+
+  - A & B Make a Resource Group and virtual network
 <p>
  Create a new virtual network and resource group. I am calling the resource group "Active-Directory-Lab" and putting it in Canada. For step by step directions to make a Resource group, network, VM, and remote desktop, review my repository [network and computing]. I'll manually create the virtual network instead of letting the VM make it. I'll name this virtual network "Active-Directory-Vnet."
  <p>
+   <br />
   
 - C. Create 2 VMs (Windows Server [Domain Controller] & Windows 10 [Client]); set up their NICs
 <img src="https://github.com/user-attachments/assets/a6c8676e-cf0e-4850-8449-9fe80460d9bb" height="80%" width="80%" alt="Disk Sanitization Steps"/>
@@ -65,7 +70,8 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
   </p>
   6. Log into client-1 and ping dc-1's private IP address. Copy dc-1's private IP address from Azure. In the client-1 VM go to start and type and go to powershell and type ping followed by dc-1's private IP address so for example "ping 10.0.0.4" if you get the error "request timed out" the VMs are likely not in the same virtual network or dc-1's firewall is still blocking ping, so review the relevant steps. If it worked you will see messages saying "Reply from 10.0.0.4" with other information. In client-1, open PowerShell again and run "ipconfig /al,l" and the output for the DNS setting should show dc-1's private IP address. Meanwhile dc-1 is using the vnet DNS server.
  </p>
-
+ <br />
+ 
 - D. Create a Domain on the Windows Server Server (Domain Controller)
 <img src="https://github.com/user-attachments/assets/40932bee-5138-4c0d-a427-f9b613eb7bc1" height="80%" width="80%" alt="Disk Sanitization Steps"/>
 
@@ -91,6 +97,8 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
  
 - Join Client to domain, allowing all users that exist in the domain to log into client-1
 </p>
+ <br />
+ 
  - E.Join the Windows 10 computer to the Domain (Providing the Windows 10 computer with access to all user accounts on the Domain)
  <p>
   
@@ -106,6 +114,8 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
   </p>
   2. Log into dc-1 as jane_admin.in the start search, search "active directory users and computers." expand "mydomain.com and select "computer" and you should see "client-1" double click it and you can view information about it like its a member of what group, and running what system. Make another operational unit called "_CLIENTS. "Go back to "computers," and then drag client-1 into _CLIENTS, saying yes to the pop-up warning. Right-click mydomain.com to refresh.
   <p>
+    <br />
+   
  - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
    <p>
     
@@ -115,7 +125,8 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
  
 </p>
     log into client-1 as jane_admin using mydomain.com\jane_admin as the username. Then, right-click the start menu -> system -> a window will pop up, select "remote desktop" on the left. Allow domain users to access the remote desktop by selecting "select users that can remotely access this PC" under "user accounts," then select "add". The computer can access the context of mydomain.com (for example, you can check again for "domain admins" now on this computer, and when you check, it will find it because you are connected to the domain. However, domain admins already have access to log in, so instead type "domain users," indicating all users in the domain will be allowed to log in to this computer. select "ok" and "Add." Normally, this step would be done with Group Policy, allowing you to change many systems at once. For more on Group Policy Objects (GPO) look to my future repository on active directory, a continuation of this lab.
-    
+     <br />
+     
   - G. Use Powershell to automatically create users/clients in bulk
    <p>
    
@@ -127,7 +138,7 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
 
   </p>
   1. Log into dc-1 as domain admin and open PowerShell Ise as admin by right-clicking it. copy the code from the file at the top of this repository titled "Generate-Names-Create-Users" then back in Powershell create a new file by clicking the first icon below "file", paste it in there and then type ctrl+s to save it to the desktop calling it "create-users" hit the green arrow to run the script to generate users.
-
+ <br />
   
  - H. Confirm by logging into the Windows 10 computer using a normal domain user, which we will create)
    <p>
@@ -137,39 +148,8 @@ Overview: The default DNS settings on the client, its NIC, will point to a DNS s
    <p>
     
    </p>
-- Coming Up!: In the next repository, we will reset users' passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD.
-$Launch the utility: <br/>
- <br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Wait for the process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-</p>
+- Up Next!: Reset users' passwords, create network shares, and assign permissions to them based on certain users and groups for permission understanding in AD here:
+  - [Active Directory Functionality](https://github.com/VictoriaDeery/ActiveDirectoryLab-pt2/blob/main/README.md)
+  - [DNS](https://github.com/victoriadeery/DNS)
+  - [Network File Shares and Permissions](https://github.com/victoriadeery/Network-File-Shares-and-Permissions)
 
-<!--
- ```diff
-- text in red
-+ text in green
-! text in orange
-# text in gray
-@@ text in purple (and bold)@@
-```
---!>
