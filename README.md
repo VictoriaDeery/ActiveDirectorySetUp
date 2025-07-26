@@ -28,7 +28,7 @@ This lab consists of a walkthrough for creating an Active Directory using VMs cr
 -  Install active directory on the domain controller & Create domain admin user
    - D. Create a Domain on the Windows Server Server (Domain Controller)
 - Join Client to domain, allowing all users that exist in the domain to log into client-1
-  - E.Join the Windows 10 computer to the Domain (Providing the Windows 10 computer with access to all user accounts on the Domain)
+  - E. Join the Windows 10 computer to the Domain (Providing the Windows 10 computer with access to all user accounts on the Domain)
   - F. Set up Remote Desktop for non-administrative users on client-1, allowing other user accounts to log into client-1 using RDP.
   - G. Use Powershell to automatically create users/clients in bulk
   - H. Confirm by logging into the Windows 10 computer using a domain user, which we will create
